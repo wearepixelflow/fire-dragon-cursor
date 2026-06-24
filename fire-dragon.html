@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epic Fire Dragon Cursor</title>
+  <style>
+    body,
+    html {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        /* Volcanic / Charcoal background to contrast the fiery dragon */
+        background: radial-gradient(circle at center, #2e0b04 0%, #0a0200 100%);
+        touch-action: none;
+    }
+
+    svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        /* Drop shadow adds depth without heavy per-element rendering cost */
+        filter: drop-shadow(0 15px 25px rgba(0,0,0,0.9));
+    }
+  </style>
+</head>
+
+<body>
+  <svg>
+    <defs>
+      <!-- ========================================== -->
+      <!-- FILTERS & GRADIENTS FOR FIRE EFFECTS       -->
+      <!-- ========================================== -->
+
+      <!-- Intense glow for the head and wings -->
+      <filter id="strongGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur2" />
+        <feMerge>
+          <feMergeNode in="blur2" />
+          <feMergeNode in="blur1" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+
+      <!-- Obsidian Armor Gradient -->
+      <linearGradient id="obsidian" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#4a4a4a" />
+        <stop offset="40%" stop-color="#1f1f1f" />
+        <stop offset="100%" stop-color="#050505" />
+      </linearGradient>
+
+      <!-- Animated Ember Pulse for Molten Cores -->
+      <linearGradient id="emberPulse" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffea00">
+          <animate attributeName="stop-color" values="#ffea00;#ff5500;#ffea00" dur="1.5s" repeatCount="indefinite" />
+        </stop>
+        <stop offset="50%" stop-color="#ff2200">
+          <animate attributeName="stop-color" values="#ff2200;#aa0000;#ff2200" dur="1.5s" repeatCount="indefinite" />
+        </stop>
+        <stop offset="100%" stop-color="#ffaa00">
+          <animate attributeName="stop-color" values="#ffaa00;#ffea00;#ffaa00" dur="1.5s" repeatCount="indefinite" />
+        </stop>
+      </linearGradient>
+
+      <!-- Animated Lava Membrane for Top Wing -->
+      <linearGradient id="fireMembraneTop" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffaa00">
+          <animate attributeName="stop-color" values="#ffaa00;#ff2200;#ffaa00" dur="2s" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="50%" stop-color="#d62d00">
+          <animate attributeName="stop-color" values="#d62d00;#ffaa00;#d62d00" dur="2s" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" stop-color="#1a0200" />
+      </linearGradient>
+
+      <!-- Animated Lava Membrane for Bottom Wing -->
+      <linearGradient id="fireMembraneBot" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#ffaa00">
+          <animate attributeName="stop-color" values="#ffaa00;#ff2200;#ffaa00" dur="2s" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="50%" stop-color="#d62d00">
+          <animate attributeName="stop-color" values="#d62d00;#ffaa00;#d62d00" dur="2s" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" stop-color="#1a0200" />
+      </linearGradient>
+
+
+      <!-- ========================================== -->
+      <!-- DRAGON PARTS                               -->
+      <!-- ========================================== -->
+
+      <!-- HEAD (Cabeza) - Redesigned to look like a living, fierce dragon -->
+      <g id="Cabeza">
+        <g transform="scale(0.75)">
+          <!-- Base Heat Glow -->
+          <path d="M 10 0 L 20 -12 L 8 -9 L 18 -26 L -4 -13 L -12 -15 L -22 -8 L -32 -7 L -38 -2 L -38 2 L -32 7 L -22 8 L -12 15 L -4 13 L 18 26 L 8 9 L 20 12 Z" fill="#ff3300" filter="url(#strongGlow)" opacity="0.6" />
+          
+          <!-- Main Obsidian Skull Silhouette -->
+          <path d="M 10 0 L 20 -12 L 8 -9 L 18 -26 L -4 -13 L -12 -15 L -22 -8 L -32 -7 L -38 -2 L -38 2 L -32 7 L -22 8 L -12 15 L -4 13 L 18 26 L 8 9 L 20 12 Z" fill="url(#obsidian)" stroke="#050505" stroke-width="1.5"/>
+          
+          <!-- Horn Ridges / Highlights (adds 3D depth to the sweeping horns) -->
+          <path d="M -4 -13 L 18 -26 L 6 -14 Z" fill="#2a2a2a" />
+          <path d="M 8 -9 L 20 -12 L 10 -4 Z" fill="#2a2a2a" />
+          <path d="M -4 13 L 18 26 L 6 14 Z" fill="#2a2a2a" />
+          <path d="M 8 9 L 20 12 L 10 4 Z" fill="#2a2a2a" />
+
+          <!-- Magma Cracks running down the center of the skull -->
+          <path d="M 8 0 L 2 -3 L -8 -2 L -20 -4 L -34 -1 L -34 1 L -20 4 L -8 2 L 2 3 Z" fill="url(#emberPulse)" />
+          
+          <!-- Cheek Vents (breathing fire from the sides) -->
+          <path d="M -10 -13 L -14 -10 L -8 -8 Z" fill="#ff5500" />
+          <path d="M -10 13 L -14 10 L -8 8 Z" fill="#ff5500" />
+
+          <!-- Crown Armor Plates / Snout Scales -->
+          <path d="M -6 0 L 0 -4 L 6 0 L 0 4 Z" fill="#1a1a1a" stroke="#000" stroke-width="0.5"/>
+          <path d="M -16 0 L -10 -3 L -4 0 L -10 3 Z" fill="#222" stroke="#000" stroke-width="0.5"/>
+          <path d="M -26 0 L -21 -2 L -16 0 L -21 2 Z" fill="#111" stroke="#000" stroke-width="0.5"/>
+
+          <!-- Fierce Glowing Eyes -->
+          <path d="M -16 -6 L -8 -11 L -12 -4 Z" fill="#ffffff" filter="url(#strongGlow)" />
+          <path d="M -16 6 L -8 11 L -12 4 Z" fill="#ffffff" filter="url(#strongGlow)" />
+
+          <!-- Glowing Nostrils -->
+          <path d="M -35 -3 L -32 -5 L -31 -2 Z" fill="#ffea00" filter="url(#strongGlow)" opacity="0.8" />
+          <path d="M -35 3 L -32 5 L -31 2 Z" fill="#ffea00" filter="url(#strongGlow)" opacity="0.8" />
+        </g>
+      </g>
+
+      <!-- WINGS / FINS (Aletas) -->
+      <g id="Aletas">
+        <g transform="scale(0.75)">
+          <!-- Base Heat Glow -->
+          <path d="M 15 -20 C 25 -40, 30 -50, 40 -70 C 15 -100, -10 -130, -20 -170 Q -40 -120, -60 -100 Q -80 -140, -100 -180 Q -85 -100, -80 -70 Q -110 -90, -130 -100 C -90 -50, -50 -25, -25 -15 Z" fill="#ff2200" filter="url(#strongGlow)" opacity="0.5"/>
+          <path d="M 15 20 C 25 40, 30 50, 40 70 C 15 100, -10 130, -20 170 Q -40 120, -60 100 Q -80 140, -100 180 Q -85 100, -80 70 Q -110 90, -130 100 C -90 50, -50 25, -25 15 Z" fill="#ff2200" filter="url(#strongGlow)" opacity="0.5"/>
+          
+          <!-- Animated Fire Membranes -->
+          <path d="M 15 -20 C 25 -40, 30 -50, 40 -70 C 15 -100, -10 -130, -20 -170 Q -40 -120, -60 -100 Q -80 -140, -100 -180 Q -85 -100, -80 -70 Q -110 -90, -130 -100 C -90 -50, -50 -25, -25 -15 Z" fill="url(#fireMembraneTop)" />
+          <path d="M 15 20 C 25 40, 30 50, 40 70 C 15 100, -10 130, -20 170 Q -40 120, -60 100 Q -80 140, -100 180 Q -85 100, -80 70 Q -110 90, -130 100 C -90 50, -50 25, -25 15 Z" fill="url(#fireMembraneBot)" />
+          
+          <!-- Wing Skeletal Fingers / Bones -->
+          <!-- Top Wing -->
+          <path d="M 15 -20 L 40 -70 L -20 -170" stroke="url(#obsidian)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M 40 -70 L -100 -180" stroke="url(#obsidian)" stroke-width="4" fill="none" stroke-linecap="round" />
+          <path d="M 40 -70 L -130 -100" stroke="url(#obsidian)" stroke-width="4" fill="none" stroke-linecap="round" />
+          <!-- Bottom Wing -->
+          <path d="M 15 20 L 40 70 L -20 170" stroke="url(#obsidian)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M 40 70 L -100 180" stroke="url(#obsidian)" stroke-width="4" fill="none" stroke-linecap="round" />
+          <path d="M 40 70 L -130 100" stroke="url(#obsidian)" stroke-width="4" fill="none" stroke-linecap="round" />
+          
+          <!-- Articulated Shoulder Claws (Obsidian Joints) -->
+          <path d="M 20 -15 L 45 -80 L 35 -85 L 15 -25 Z" fill="url(#obsidian)" />
+          <path d="M 20 15 L 45 80 L 35 85 L 15 25 Z" fill="url(#obsidian)" />
+
+          <!-- Glowing Ember Tips at the end of the bone claws -->
+          <!-- Top Claws -->
+          <path d="M 45 -80 L -20 -170 L -15 -160 Z" fill="url(#emberPulse)" />
+          <path d="M 45 -80 L -100 -180 L -95 -170 Z" fill="url(#emberPulse)" />
+          <path d="M 45 -80 L -130 -100 L -125 -95 Z" fill="url(#emberPulse)" />
+          <!-- Bottom Claws -->
+          <path d="M 45 80 L -20 170 L -15 160 Z" fill="url(#emberPulse)" />
+          <path d="M 45 80 L -100 180 L -95 170 Z" fill="url(#emberPulse)" />
+          <path d="M 45 80 L -130 100 L -125 95 Z" fill="url(#emberPulse)" />
+        </g>
+      </g>
+
+      <!-- BODY SEGMENTS / SPINE (Espina) -->
+      <!-- Highly optimized to avoid blur filters while keeping the fiery look -->
+      <g id="Espina">
+        <g transform="scale(0.75)">
+          <!-- Simulated Glow Aura (Using transparency instead of heavy blur) -->
+          <path d="M 12 0 L 0 -14 L -18 -21 L -12 -7 L -28 0 L -12 7 L -18 21 L 0 14 Z" fill="#ff3300" opacity="0.3" />
+          
+          <!-- Outer Sharp Obsidian Plates -->
+          <path d="M 10 0 L 0 -12 L -15 -18 L -10 -6 L -25 0 L -10 6 L -15 18 L 0 12 Z" fill="url(#obsidian)" stroke="#050505" stroke-width="1" />
+          
+          <!-- Pulsing Molten Core (Cracked Lava) -->
+          <path d="M 6 0 L 0 -8 L -10 -12 L -6 -4 L -18 0 L -6 4 L -10 12 L 0 8 Z" fill="url(#emberPulse)" />
+          
+          <!-- Central Ridges / Spikes (Dark Overlay to segment the core) -->
+          <path d="M 8 0 L 0 -4 L -10 0 L 0 4 Z" fill="#111" />
+          <path d="M -2 0 L -8 -3 L -16 0 L -8 3 Z" fill="#222" />
+        </g>
+      </g>
+    </defs>
+    <g id="screen" />
+  </svg>
+
+  <script>
+    "use strict";
+
+    const screen = document.getElementById("screen");
+    const xmlns = "http://www.w3.org/2000/svg";
+    const xlinkns = "http://www.w3.org/1999/xlink";
+
+    window.addEventListener(
+        "pointermove",
+        (e) => {
+            pointer.x = e.clientX;
+            pointer.y = e.clientY;
+            rad = 0;
+        },
+        false
+    );
+
+    const resize = () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+    };
+
+    let width, height;
+    window.addEventListener("resize", () => resize(), false);
+    resize();
+
+    const prepend = (use, i) => {
+        const elem = document.createElementNS(xmlns, "use");
+        elems[i].use = elem;
+        elem.setAttributeNS(xlinkns, "xlink:href", "#" + use);
+        screen.prepend(elem);
+    };
+
+    const N = 40;
+
+    const elems = [];
+    for (let i = 0; i < N; i++) elems[i] = { use: null, x: width / 2, y: 0 };
+    const pointer = { x: width / 2, y: height / 2 };
+    const radm = Math.min(pointer.x, pointer.y) - 20;
+    let frm = Math.random();
+    let rad = 0;
+
+    for (let i = 1; i < N; i++) {
+        if (i === 1) prepend("Cabeza", i);
+        else if (i === 8 || i === 14) prepend("Aletas", i);
+        else prepend("Espina", i);
+    }
+
+    const run = () => {
+        requestAnimationFrame(run);
+        let e = elems[0];
+        const ax = (Math.cos(3 * frm) * rad * width) / height;
+        const ay = (Math.sin(4 * frm) * rad * height) / width;
+        e.x += (ax + pointer.x - e.x) / 10;
+        e.y += (ay + pointer.y - e.y) / 10;
+        for (let i = 1; i < N; i++) {
+            let e = elems[i];
+            let ep = elems[i - 1];
+            const a = Math.atan2(e.y - ep.y, e.x - ep.x);
+            e.x += (ep.x - e.x + (Math.cos(a) * (100 - i)) / 5) / 4;
+            e.y += (ep.y - e.y + (Math.sin(a) * (100 - i)) / 5) / 4;
+            const s = (162 + 4 * (1 - i)) / 50;
+            e.use.setAttributeNS(
+                null,
+                "transform",
+                `translate(${(ep.x + e.x) / 2},${(ep.y + e.y) / 2}) rotate(${(180 / Math.PI) * a
+                }) translate(${0},${0}) scale(${s},${s})`
+            );
+        }
+        if (rad < radm) rad++;
+        frm += 0.003;
+        if (rad > 60) {
+            pointer.x += (width / 2 - pointer.x) * 0.05;
+            pointer.y += (height / 2 - pointer.y) * 0.05;
+        }
+    };
+
+    run();
+  </script>
+
+</body>
+</html>
